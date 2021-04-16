@@ -24,12 +24,12 @@
         android:id="@+id/start"
         android:layout_width="336dp"
         android:layout_height="67dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="8dp"
         android:text="Sign Up"
         app:backgroundTint="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/loginPage"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
