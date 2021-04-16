@@ -49,6 +49,16 @@ public class MainActivity extends AppCompatActivity {
         list = new ArrayList<>();
         adapterClass = new AdapterClass(list, this);
         recyclerView.setAdapter(adapterClass);
+
+
+        Button dialogButton = (Button) findViewById(R.id.s_button);
+        dialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialog();
+            }
+        });
+
     }
 
     @Override
@@ -110,8 +120,8 @@ public class MainActivity extends AppCompatActivity {
                 //System.out.println(object.getTAG());
                 adapterClass.notifyItemInserted(mylist.size() - 1);
 
-
             }
+
             //recyclerView.setAdapter(adapterClass);
             AdapterClass adapterClass = new AdapterClass(mylist, this);
             recyclerView.setAdapter(adapterClass);
@@ -120,16 +130,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-   /* public void showDialog(Activity activity, String msg){
-        final Dialog dialog = new Dialog(activity);
+    public void showDialog() {
+
+        final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.dialog);
 
-        TextView text = (TextView) dialog.findViewById(R.id.text_dialog);
-        text.setText(msg);
 
-        Button dialogButton = (Button) dialog.findViewById(R.id.btn_dialog);
+
+        Button dialogButton = (Button) dialog.findViewById(R.id.sortButton);
         dialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
 
         dialog.show();
 
-    }*/
+    }
 
 
 }
