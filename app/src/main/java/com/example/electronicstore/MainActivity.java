@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth fAuth;
     AdapterClass adapterClass;
     CheckBox titleButton, manuButton, categoryButton, a_checkBox, d_checkBox, title_checkBox, manu_checkBox, price_checkBox;
-
+    Button addToCart;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +53,10 @@ public class MainActivity extends AppCompatActivity {
         ref = FirebaseDatabase.getInstance().getReference().child("Items");
         recyclerView = findViewById(R.id.rv);
         searchView = findViewById(R.id.searchView);
+
+
+        //addToCartButton
+
 
 
         //checkboxes
@@ -109,6 +113,10 @@ public class MainActivity extends AppCompatActivity {
                 showDialog();
             }
         });
+
+
+
+
 
 
     }
@@ -368,6 +376,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+
 
 
 

@@ -7,11 +7,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -48,8 +55,10 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.MyViewHolder
         holder.btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent intent3 = new Intent(context, DisplaySteps.class);
-                //context.startActivity(intent3);
+                //Integer.parseInt(list.get(i).getStock())-1
+                //list.get(i).setStock();
+                addToCart(view, list.get(i).getTitle(), list.get(i).getManufacturer(), list.get(i).getCategory(), list.get(i).getPrice(),  list.get(i).getStock());
+                Toast.makeText(context, "Item Added to Cart", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -76,9 +85,40 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.MyViewHolder
             categoryView = itemView.findViewById(R.id.categoryView);
             priceView = itemView.findViewById(R.id.priceView);
             stockView = itemView.findViewById(R.id.stockView);
-            btn = itemView.findViewById(R.id.startBrew);
+            btn = itemView.findViewById(R.id.addToCart);
 
         }
+
+    }
+
+    public void addToCart(View view, String title, String manufacturer, String category, String price, String stock) {
+
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference uidRef = rootRef.child("Cart").child(uid);
+
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                DatabaseReference uidRef = dataSnapshot.child(title).getRef();
+                uidRef.child("title").setValue(title);
+                uidRef.child("manufacturer").setValue(manufacturer);
+                uidRef.child("category").setValue(category);
+                uidRef.child("price").setValue(price);
+                uidRef.child("stock").setValue(stock);
+                
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                databaseError.getMessage(); //Don't ignore errors!
+            }
+        };
+        uidRef.addListenerForSingleValueEvent(valueEventListener);
+
+
 
     }
 }
