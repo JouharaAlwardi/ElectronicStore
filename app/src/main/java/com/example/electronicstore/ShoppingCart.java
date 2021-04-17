@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -38,6 +40,7 @@ public class ShoppingCart extends AppCompatActivity {
     EditText promoCode;
     Button apply, clear;
     String promocodes[] = {"ES10", "ES20", "ES30"};
+    Button proceed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +62,20 @@ public class ShoppingCart extends AppCompatActivity {
         apply = findViewById(R.id.apply);
         clear = findViewById(R.id.clearPromoCode);
 
+        //Proceed
+        proceed = findViewById(R.id.proceed);
+
         list = new ArrayList<>();
         adapterClass = new ShoppingCartAdapter(list, this);
         recyclerView.setAdapter(adapterClass);
 
+
+        proceed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), Checkout.class));
+            }
+        });
 
 
 
@@ -139,7 +152,7 @@ public class ShoppingCart extends AppCompatActivity {
                                 clear.setVisibility(View.VISIBLE);
 
                             }
-                            
+
                             Toast.makeText(ShoppingCart.this, "You Can Only Use One Promocode", Toast.LENGTH_SHORT).show();
 
                         }
@@ -153,15 +166,6 @@ public class ShoppingCart extends AppCompatActivity {
                                 clear.setVisibility(View.GONE);
                             }
                         });
-
-
-
-
-
-
-
-
-
 
 
                     }
