@@ -45,7 +45,7 @@
         android:textColor="@android:color/black"
         android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintEnd_toStartOf="@+id/imageViewCart"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -157,7 +157,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageViewCart"
         android:layout_width="65dp"
         android:layout_height="62dp"
         android:layout_marginStart="50dp"

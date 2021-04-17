@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth fAuth;
     AdapterClass adapterClass;
     CheckBox titleButton, manuButton, categoryButton, a_checkBox, d_checkBox, title_checkBox, manu_checkBox, price_checkBox;
-    Button addToCart;
+    Button checkoutButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,8 +56,8 @@ public class MainActivity extends AppCompatActivity {
         searchView = findViewById(R.id.searchView);
 
 
-        //addToCartButton
-
+        //Checkout Button
+        checkoutButton = findViewById(R.id.checkoutButton);
 
 
         //checkboxes
@@ -111,6 +112,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showDialog();
+            }
+        });
+
+
+        checkoutButton.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(getApplicationContext(), ShoppingCart.class));
             }
         });
 
