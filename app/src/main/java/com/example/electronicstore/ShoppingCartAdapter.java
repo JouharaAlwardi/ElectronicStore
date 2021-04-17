@@ -53,8 +53,7 @@ public class ShoppingCartAdapter  extends RecyclerView.Adapter<ShoppingCartAdapt
         holder.manuView.setText(list.get(i).getManufacturer());
         holder.priceView.setText(list.get(i).getPrice()+"$");
         Glide.with(context).load(list.get(i).getImage()).into(holder.image);
-        double price =  Double.parseDouble(list.get(i).getPrice());
-        totalPrice = totalPrice + price;
+
 
 
 
