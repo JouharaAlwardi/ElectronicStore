@@ -35,12 +35,12 @@
         android:layout_marginBottom="48dp"
         android:text="Ascending"
         app:layout_constraintBottom_toTopOf="@+id/orderTextView2"
-        app:layout_constraintEnd_toStartOf="@+id/d_checkBox2"
+        app:layout_constraintEnd_toStartOf="@+id/d_checkBox"
         app:layout_constraintHorizontal_bias="0.812"
         app:layout_constraintStart_toStartOf="parent" />
 
     <CheckBox
-        android:id="@+id/d_checkBox2"
+        android:id="@+id/d_checkBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="116dp"

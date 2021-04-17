@@ -25,6 +25,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     SearchView searchView;
     FirebaseAuth fAuth;
     AdapterClass adapterClass;
-    CheckBox titleButton, manuButton, categoryButton;
+    CheckBox titleButton, manuButton, categoryButton, a_checkBox, d_checkBox, title_checkBox, manu_checkBox, price_checkBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+
+
 
         fAuth = FirebaseAuth.getInstance();
         ref = FirebaseDatabase.getInstance().getReference().child("Items");
@@ -96,13 +102,13 @@ public class MainActivity extends AppCompatActivity {
 
         Button dialogButton = (Button) findViewById(R.id.s_button);
         dialogButton.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(View v) {
                 showDialog();
             }
         });
-
-
 
 
     }
@@ -188,6 +194,8 @@ public class MainActivity extends AppCompatActivity {
                     adapterClass.notifyItemInserted(mylist.size() - 1);
 
                 }
+
+
             }
             //recyclerView.setAdapter(adapterClass);
             AdapterClass adapterClass = new AdapterClass(mylist, this);
@@ -204,12 +212,46 @@ public class MainActivity extends AppCompatActivity {
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.dialog);
 
+        //checkboxes inside dialog (Order)
+        a_checkBox = dialog.findViewById(R.id.a_checkBox);
+        d_checkBox = dialog.findViewById(R.id.d_checkBox);
+
+        //checkboxes inside dialog (Category)
+        title_checkBox = dialog.findViewById(R.id.title_checkBox);
+        manu_checkBox = dialog.findViewById(R.id.manu_checkBox);
+        price_checkBox = dialog.findViewById(R.id.price_checkBox);
+
+
+        checkboxesOrder();
+        checkboxesCategory();
 
 
         Button dialogButton = (Button) dialog.findViewById(R.id.sortButton);
         dialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if (a_checkBox.isChecked() && title_checkBox.isChecked()) {
+                    ascendingTitle();
+
+                }
+
+                else if (d_checkBox.isChecked() && title_checkBox.isChecked()) {
+
+                    descendingTitle();
+
+
+                }
+                else if (a_checkBox.isChecked() && manu_checkBox.isChecked()) {
+                    ascendingManufacturing();
+                }
+
+                else if (d_checkBox.isChecked() && manu_checkBox.isChecked()) {
+                    descendingManufacturing();
+                }
+
+
+
                 dialog.dismiss();
             }
         });
@@ -217,6 +259,116 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
 
     }
+
+    public void ascendingTitle(){
+
+        Collections.sort(list, new Comparator<Item>() {
+            @Override
+            public int compare(Item lhs, Item rhs) {
+                return lhs.getTitle().compareTo(rhs.getTitle());
+            }
+        });
+
+    }
+
+    public void ascendingManufacturing(){
+
+        Collections.sort(list, new Comparator<Item>() {
+            @Override
+            public int compare(Item lhs, Item rhs) {
+                return lhs.getManufacturer().compareTo(rhs.getManufacturer());
+            }
+        });
+
+    }
+
+    public void descendingTitle(){
+
+        Collections.sort(list, new Comparator<Item>() {
+            @Override
+            public int compare(Item lhs, Item rhs) {
+                return rhs.getTitle().compareTo(lhs.getTitle());
+            }
+        });
+
+    }
+
+    public void descendingManufacturing(){
+
+        Collections.sort(list, new Comparator<Item>() {
+            @Override
+            public int compare(Item lhs, Item rhs) {
+                return rhs.getManufacturer().compareTo(lhs.getManufacturer());
+            }
+        });
+
+    }
+
+    public void checkboxesOrder() {
+        a_checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked)
+                {
+                    d_checkBox.setChecked(false);
+
+                }
+            }
+        });
+
+        d_checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked)
+                {
+                    a_checkBox.setChecked(false);
+
+                }
+            }
+        });
+
+    }
+
+    public void checkboxesCategory() {
+
+
+        title_checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked)
+                {
+                    manu_checkBox.setChecked(false);
+                    price_checkBox.setChecked(false);
+
+                }
+            }
+        });
+
+        price_checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked)
+                {
+                    manu_checkBox.setChecked(false);
+                    title_checkBox.setChecked(false);
+
+                }
+            }
+        });
+        manu_checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked)
+                {
+                    price_checkBox.setChecked(false);
+                    title_checkBox.setChecked(false);
+
+                }
+            }
+        });
+
+    }
+
 
 
 }

@@ -1,7 +1,6 @@
 package com.example.electronicstore;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,9 +39,11 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.MyViewHolder
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int i) {
 
-        holder.name.setText(list.get(i).getTitle());
-        //holder.tag.setText(list.get(i).getTAG());
-        holder.description.setText(list.get(i).getManufacturer());
+        holder.titleView.setText(list.get(i).getTitle());
+        holder.manuView.setText(list.get(i).getManufacturer());
+        holder.categoryView.setText(list.get(i).getCategory());
+        holder.priceView.setText(list.get(i).getPrice()+"$");
+        holder.stockView.setText("Stock: "+list.get(i).getStock());
         Glide.with(context).load(list.get(i).getImage()).into(holder.image);
         holder.btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,20 +64,18 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.MyViewHolder
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder  {
-        TextView name, description, tag, coffeeRatio;
+        TextView titleView, manuView, categoryView, priceView, stockView;
         ImageView image;
-        ImageView grindImage;
         Button btn;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.nameView);
-            description = itemView.findViewById(R.id.descriptionView);
-
-            tag = itemView.findViewById(R.id.tagView);
+            titleView = itemView.findViewById(R.id.titleView);
+            manuView = itemView.findViewById(R.id.manuView);
             image = itemView.findViewById(R.id.imageView);
-
-
+            categoryView = itemView.findViewById(R.id.categoryView);
+            priceView = itemView.findViewById(R.id.priceView);
+            stockView = itemView.findViewById(R.id.stockView);
             btn = itemView.findViewById(R.id.startBrew);
 
         }
