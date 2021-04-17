@@ -4,8 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -17,6 +20,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import static android.preference.PreferenceManager.getDefaultSharedPreferences;
+
 public class ShoppingCart extends AppCompatActivity {
     DatabaseReference ref;
     ArrayList<Item> list;
@@ -24,6 +29,9 @@ public class ShoppingCart extends AppCompatActivity {
     SearchView searchView;
     FirebaseAuth fAuth;
     ShoppingCartAdapter adapterClass;
+    TextView totalValue;
+    double total = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,14 +43,24 @@ public class ShoppingCart extends AppCompatActivity {
         searchView = findViewById(R.id.searchView);
 
 
+
         list = new ArrayList<>();
         adapterClass = new ShoppingCartAdapter(list, this);
         recyclerView.setAdapter(adapterClass);
 
+
+        //double price = adapterClass.getGrandTotal();
+        totalValue = findViewById(R.id.totalValue);
+
+
     }
+
+
+
 
     @Override
     protected void onStart() {
+
         super.onStart();
         if(ref != null)
         {
@@ -61,9 +79,19 @@ public class ShoppingCart extends AppCompatActivity {
                             adapterClass.notifyItemInserted(list.size()-1);
                             recyclerView.setAdapter(adapterClass);
 
+
+
+
                         }
 
+
+                         for (int i = 0; i <= list.size()-1; i++) {
+                            total = total + Double.parseDouble(list.get(i).getPrice());
+                             totalValue.setText(String.valueOf(total));
+                         }
+
                     }
+
 
                 }
 
@@ -78,4 +106,7 @@ public class ShoppingCart extends AppCompatActivity {
 
 
     }
-}
+
+
+
+    }

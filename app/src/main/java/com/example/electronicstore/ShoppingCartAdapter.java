@@ -1,6 +1,7 @@
 package com.example.electronicstore;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +15,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 
 public class ShoppingCartAdapter  extends RecyclerView.Adapter<ShoppingCartAdapter.MyViewHolder> {
 
     ArrayList<Item> list;
     Context context;
+    double totalPrice;
+
+
+
 
 
     public ShoppingCartAdapter(ArrayList<Item> list, Context context) {
@@ -43,12 +51,16 @@ public class ShoppingCartAdapter  extends RecyclerView.Adapter<ShoppingCartAdapt
 
         holder.titleView.setText(list.get(i).getTitle());
         holder.manuView.setText(list.get(i).getManufacturer());
-        holder.priceView.setText(list.get(i).getPrice() + "$");
+        holder.priceView.setText(list.get(i).getPrice()+"$");
         Glide.with(context).load(list.get(i).getImage()).into(holder.image);
+        double price =  Double.parseDouble(list.get(i).getPrice());
+        totalPrice = totalPrice + price;
 
 
 
-    }
+        }
+
+
 
     @Override
     public int getItemCount() {
@@ -56,9 +68,12 @@ public class ShoppingCartAdapter  extends RecyclerView.Adapter<ShoppingCartAdapt
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView titleView, manuView, categoryView, priceView, stockView;
+        TextView titleView, manuView, priceView;
         ImageView image;
-        Button btn;
+
+
+
+
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -71,4 +86,11 @@ public class ShoppingCartAdapter  extends RecyclerView.Adapter<ShoppingCartAdapt
         }
 
     }
+
+
+
+
+
+
+
 }
