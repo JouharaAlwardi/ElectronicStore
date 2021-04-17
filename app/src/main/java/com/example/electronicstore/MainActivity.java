@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     SearchView searchView;
     FirebaseAuth fAuth;
     AdapterClass adapterClass;
+    CheckBox titleButton, manuButton, categoryButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,46 @@ public class MainActivity extends AppCompatActivity {
         ref = FirebaseDatabase.getInstance().getReference().child("Items");
         recyclerView = findViewById(R.id.rv);
         searchView = findViewById(R.id.searchView);
+
+
+        //checkboxes
+        titleButton = findViewById(R.id.titleButton);
+        manuButton = findViewById(R.id.manuButton);
+        categoryButton = findViewById(R.id.categoryButton);
+
+        //override checkboxes
+
+        titleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked)
+                {
+                    manuButton.setChecked(false);
+                    categoryButton.setChecked(false);
+                }
+            }
+        });
+        manuButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked)
+                {
+                    categoryButton.setChecked(false);
+                    titleButton.setChecked(false);
+                }
+            }
+        });
+        categoryButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked)
+                {
+                    manuButton.setChecked(false);
+                    titleButton.setChecked(false);
+                }
+            }
+        });
+
 
 
         list = new ArrayList<>();
@@ -59,7 +102,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
+
     }
+
+
 
     @Override
     protected void onStart() {
@@ -115,13 +163,32 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Item> mylist = new ArrayList<>();
         for (Item object : list) {
 
-            if (object.getTitle().toLowerCase().contains(str.toLowerCase())) {
-                mylist.add(object);
-                //System.out.println(object.getTAG());
-                adapterClass.notifyItemInserted(mylist.size() - 1);
+            if(titleButton.isChecked()) {
+                if (object.getTitle().toLowerCase().contains(str.toLowerCase())) {
+                    mylist.add(object);
 
+                    adapterClass.notifyItemInserted(mylist.size() - 1);
+
+                }
             }
 
+            if(manuButton.isChecked()) {
+                if (object.getManufacturer().toLowerCase().contains(str.toLowerCase())) {
+                    mylist.add(object);
+
+                    adapterClass.notifyItemInserted(mylist.size() - 1);
+
+                }
+            }
+
+            if(categoryButton.isChecked()) {
+                if (object.getCategory().toLowerCase().contains(str.toLowerCase())) {
+                    mylist.add(object);
+
+                    adapterClass.notifyItemInserted(mylist.size() - 1);
+
+                }
+            }
             //recyclerView.setAdapter(adapterClass);
             AdapterClass adapterClass = new AdapterClass(mylist, this);
             recyclerView.setAdapter(adapterClass);
