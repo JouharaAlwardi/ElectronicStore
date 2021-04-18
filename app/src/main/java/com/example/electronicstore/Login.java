@@ -38,7 +38,7 @@ public class Login extends AppCompatActivity {
         forgetPassword = (TextView) findViewById(R.id.forgetPassword);
         fAuth = FirebaseAuth.getInstance();
 
-        /////////////////////
+
         Button signupPage = (Button) findViewById(R.id.signupPage
         );
         signupPage.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +50,7 @@ public class Login extends AppCompatActivity {
             }
         });
 
-        /////////////////////
+
         login = (Button) findViewById(R.id.loginAdmin
         );
         login.setOnClickListener(new View.OnClickListener() {
