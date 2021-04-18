@@ -18,20 +18,20 @@ public class LaunchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_launch);
 
         userTitle = (Button) findViewById(R.id.userTitle);
-        adminstratorTitle = (Button) findViewById(R.id.adminstratorTitle);
+        adminstratorTitle = (Button) findViewById(R.id.adminTitle);
 
 
-        userTitle.setOnClickListener(new View.OnClickListener() {
+       userTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               startActivity(new Intent(getApplicationContext(), AdminstratorLogin.class));
+               startActivity(new Intent(LaunchActivity.this, Login.class));
             }
         });
 
         adminstratorTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), Login.class));
+                startActivity(new Intent(LaunchActivity.this, AdminstratorLogin.class));
             }
         });
     }

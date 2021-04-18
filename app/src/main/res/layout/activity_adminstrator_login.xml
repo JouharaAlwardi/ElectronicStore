@@ -3,21 +3,21 @@
 <androidx.constraintlayout.widget.ConstraintLayout tools:context=".AdminstratorLogin" android:layout_height="match_parent" android:layout_width="match_parent" xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android">
 
     <Button
-        android:id="@+id/adminstratorTitle"
+        android:id="@+id/adminTitle"
         android:layout_width="291dp"
         android:layout_height="42dp"
         android:layout_marginBottom="25dp"
-        android:background="@color/whiteTransparentHalf"
+        android:background="@color/newgrey"
         android:shadowColor="@android:color/transparent"
         android:text="Sign Up"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
-        app:backgroundTint="@color/whiteTransparentHalf"
+        app:backgroundTint="@color/newgrey"
         app:layout_constraintBottom_toTopOf="@+id/forgetPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/login"
+        android:id="@+id/loginAdmin"
         android:layout_width="291dp"
         android:layout_height="42dp"
         android:layout_marginBottom="16dp"
@@ -25,13 +25,13 @@
         android:shadowColor="@android:color/transparent"
         android:text="Log In"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
-        app:backgroundTint="@color/whiteTransparentHalf"
-        app:layout_constraintBottom_toTopOf="@+id/adminstratorTitle"
+        app:backgroundTint="@color/newgrey"
+        app:layout_constraintBottom_toTopOf="@+id/adminTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/email"
+        android:id="@+id/Admin"
         android:layout_width="291dp"
 
         android:layout_height="46dp"
@@ -41,12 +41,12 @@
         android:hint="Email"
         android:inputType="textPersonName"
         android:paddingLeft="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/login"
+        app:layout_constraintBottom_toTopOf="@+id/loginAdmin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/passwordAdmin"
         android:layout_width="291dp"
         android:layout_height="46dp"
         android:layout_marginBottom="8dp"
@@ -55,7 +55,7 @@
         android:hint="Password"
         android:inputType="textPersonName"
         android:paddingLeft="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/email"
+        app:layout_constraintBottom_toTopOf="@+id/Admin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -63,7 +63,7 @@
         android:id="@+id/forgetPassword"
         android:layout_width="137dp"
         android:layout_height="24dp"
-        android:layout_marginBottom="200dp"
+        android:layout_marginBottom="150dp"
         android:text="Forget Passowrd ?"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -74,14 +74,17 @@
         android:id="@+id/adminTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="40dp"
         android:text="Adminstrator"
         android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/password"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/passwordAdmin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.595"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

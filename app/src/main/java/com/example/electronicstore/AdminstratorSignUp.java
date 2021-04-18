@@ -22,7 +22,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class SignUp extends AppCompatActivity {
+public class AdminstratorSignUp extends AppCompatActivity {
 
 
     public static final String TAG = "TAG";
@@ -36,14 +36,14 @@ public class SignUp extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+        setContentView(R.layout.activity_adminstrator_sign_up);
 
 
         nameText = (EditText) findViewById(R.id.nameAD);
         usernameText = (EditText) findViewById(R.id.usernameAD);
-        emailText = (EditText) findViewById(R.id.Admin);
+        emailText = (EditText) findViewById(R.id.AD);
         phoneNumberText = (EditText) findViewById(R.id.phoneNumberAD);
-        passwordText = (EditText) findViewById(R.id.passwordAdmin);
+        passwordText = (EditText) findViewById(R.id.passwordAD);
 
         fAuth = FirebaseAuth.getInstance();
 
@@ -69,13 +69,13 @@ public class SignUp extends AppCompatActivity {
                 //Validation
                 if (username.length() < 6 || password.length() < 6) {
 
-                    Toast.makeText(SignUp.this, "Username or password is less than 6 characters", Toast.LENGTH_LONG).show();
+                    Toast.makeText(AdminstratorSignUp.this, "Username or password is less than 6 characters", Toast.LENGTH_LONG).show();
 
 
 
                 }  if (validatePasswrod(password) == true) {
 
-                    Toast.makeText(SignUp.this, "Whitespace not allowed in password ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(AdminstratorSignUp.this, "Whitespace not allowed in password ", Toast.LENGTH_LONG).show();
 
                 }  if (TextUtils.isEmpty(email)) {
                     emailText.setError("Email is Required");
@@ -100,7 +100,7 @@ public class SignUp extends AppCompatActivity {
                                         fuser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {
-                                                Toast.makeText(SignUp.this, "Verification Email Has been Sent.", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(AdminstratorSignUp.this, "Verification Email Has been Sent.", Toast.LENGTH_SHORT).show();
                                             }
                                         }).addOnFailureListener(new OnFailureListener() {
                                             @Override
@@ -110,21 +110,21 @@ public class SignUp extends AppCompatActivity {
                                         });
 
 
-                                        com.example.fypbarcode.UserHelperClass user = new com.example.fypbarcode.UserHelperClass(  name,  username,  email,  phoneNumber,  password);
+                                        Adminstrator adminstrator = new Adminstrator(  name,  username,  email,  phoneNumber,  password);
 
-                                        FirebaseDatabase.getInstance().getReference("Users")
+                                        FirebaseDatabase.getInstance().getReference("Adminstrator")
                                                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                                .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                .setValue(adminstrator).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if(task.isSuccessful()){
-                                                    Toast.makeText(SignUp.this, "User Created ", Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(AdminstratorSignUp.this, "Adminstrator Created ", Toast.LENGTH_LONG).show();
                                                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                                     startActivity(intent);
 
                                                 }
                                                 else {
-                                                    Toast.makeText(SignUp.this, "Error ", Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(AdminstratorSignUp.this, "Error ", Toast.LENGTH_LONG).show();
 
                                                 }
                                             }
@@ -183,7 +183,7 @@ public class SignUp extends AppCompatActivity {
 
     private void loginPage(View v) {
 
-        Intent intent1 = new Intent(SignUp.this, Login.class);
+        Intent intent1 = new Intent(AdminstratorSignUp.this, AdminstratorLogin.class);
         startActivity(intent1);
     }
 }

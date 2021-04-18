@@ -33,24 +33,24 @@ public class AdminstratorLogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adminstrator_login);
 
-        mEmail = (EditText) findViewById(R.id.email);
-        mPassword = (EditText) findViewById(R.id.password);
+        mEmail = (EditText) findViewById(R.id.Admin);
+        mPassword = (EditText) findViewById(R.id.passwordAdmin);
         forgetPassword = (TextView) findViewById(R.id.forgetPassword);
         fAuth = FirebaseAuth.getInstance();
 
         /////////////////////
-        Button signupPage = (Button) findViewById(R.id.signupPage
+     Button signupPage = (Button) findViewById(R.id.adminTitle
         );
         signupPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), AdminstratorSignUp.class));
+          startActivity(new Intent(getApplicationContext(), AdminstratorSignUp.class));
 
             }
         });
 
         /////////////////////
-        login = (Button) findViewById(R.id.login);
+        login = (Button) findViewById(R.id.loginAdmin);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
