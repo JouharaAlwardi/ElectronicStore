@@ -112,7 +112,7 @@ public class Checkout extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                for (DataSnapshot ds: dataSnapshot.getChildren()) {
                     String key = ds.getKey();
-                   String title = dataSnapshot.child(key).child("title").getValue(String.class);
+                    String title = dataSnapshot.child(key).child("title").getValue(String.class);
                    if (name.equalsIgnoreCase(title)) {
                     String stock = dataSnapshot.child(key).child("stock").getValue(String.class);
                     int stockInt = Integer.parseInt(stock) - 1;

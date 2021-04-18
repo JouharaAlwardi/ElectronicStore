@@ -1,18 +1,17 @@
 package com.example.electronicstore;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -57,7 +56,11 @@ public class AdapterCustomer extends RecyclerView.Adapter<AdapterCustomer.MyView
                 //int num = Integer.parseInt(list.get(i).getStock())-1;
                 //list.get(i).setStock(String.valueOf(num));
                // addToCart(view, list.get(i).getTitle(), list.get(i).getManufacturer(), list.get(i).getCategory(), list.get(i).getPrice(),  list.get(i).getStock(),list.get(i).getImage() );
-                Toast.makeText(context, "View Order History", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "View " + list.get(i).getName() + " Purchases", Toast.LENGTH_SHORT).show();
+                Intent intent1 = new Intent(context, Purchases.class);
+                intent1.putExtra("username", list.get(i).getUsername());
+                context.startActivity(intent1);
+
             }
         });
 
@@ -76,11 +79,11 @@ public class AdapterCustomer extends RecyclerView.Adapter<AdapterCustomer.MyView
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            customerName = itemView.findViewById(R.id.customerName);
-            customerUsername = itemView.findViewById(R.id.customerUsername);
-            customerEmail = itemView.findViewById(R.id.customerEmail);
+            customerName = itemView.findViewById(R.id.orderNum);
+            customerUsername = itemView.findViewById(R.id.purchaseName);
+            customerEmail = itemView.findViewById(R.id.purchaseManu);
             customerNum = itemView.findViewById(R.id.customerNum);
-            btn = itemView.findViewById(R.id.orderHistory);
+            btn = itemView.findViewById(R.id.orderDetails);
 
         }
 

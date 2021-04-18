@@ -71,10 +71,10 @@ public class ShoppingCartAdapter  extends RecyclerView.Adapter<ShoppingCartAdapt
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            titleView = itemView.findViewById(R.id.customerName);
-            manuView = itemView.findViewById(R.id.customerUsername);
-            image = itemView.findViewById(R.id.imageViewaAD);
-            priceView = itemView.findViewById(R.id.customerEmail);
+            titleView = itemView.findViewById(R.id.orderNum);
+            manuView = itemView.findViewById(R.id.purchaseName);
+            image = itemView.findViewById(R.id.imageViewOrder);
+            priceView = itemView.findViewById(R.id.purchaseManu);
 
 
         }

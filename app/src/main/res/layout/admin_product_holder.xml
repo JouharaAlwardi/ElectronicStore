@@ -15,7 +15,7 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/imageViewaAD"
+            android:id="@+id/imageViewOrder"
             android:layout_width="107dp"
             android:layout_height="109dp"
             android:baselineAlignBottom="true"

@@ -77,12 +77,12 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.MyViewHolder
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            titleView = itemView.findViewById(R.id.customerName);
-            manuView = itemView.findViewById(R.id.customerUsername);
-            image = itemView.findViewById(R.id.imageViewaAD);
-            categoryView = itemView.findViewById(R.id.categoryView);
-            priceView = itemView.findViewById(R.id.customerEmail);
-            stockView = itemView.findViewById(R.id.stockView);
+            titleView = itemView.findViewById(R.id.orderNum);
+            manuView = itemView.findViewById(R.id.purchaseName);
+            image = itemView.findViewById(R.id.imageViewOrder);
+            categoryView = itemView.findViewById(R.id.purchasePrice);
+            priceView = itemView.findViewById(R.id.purchaseManu);
+            stockView = itemView.findViewById(R.id.purchaseCategory);
             btn = itemView.findViewById(R.id.updateData);
 
         }
