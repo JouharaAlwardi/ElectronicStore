@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -149,8 +150,11 @@ public class ShoppingCart extends AppCompatActivity {
                                 clear.setVisibility(View.VISIBLE);
 
                             }
-
-                            Toast.makeText(ShoppingCart.this, "You Can Only Use One Promocode", Toast.LENGTH_SHORT).show();
+                            AlertDialog.Builder builder = new AlertDialog.Builder(ShoppingCart.this);
+                            builder.setMessage("You Can Only Use One Promocode.")
+                                    .setTitle("Message");
+                            AlertDialog dialog = builder.create();
+                            dialog.show();
 
                         }
                     });
