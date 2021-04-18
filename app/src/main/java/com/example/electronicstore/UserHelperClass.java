@@ -1,4 +1,4 @@
-package com.example.fypbarcode;
+package com.example.electronicstore;
 
 public class UserHelperClass {
 

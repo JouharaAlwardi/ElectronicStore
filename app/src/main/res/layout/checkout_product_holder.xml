@@ -30,7 +30,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/titleViewCart"
+                android:id="@+id/customerName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -41,14 +41,14 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/manuViewCart"
+                android:id="@+id/customerUsername"
                 android:layout_width="285dp"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
                 android:text="sample" />
 
             <TextView
-                android:id="@+id/priceViewCart"
+                android:id="@+id/customerEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"

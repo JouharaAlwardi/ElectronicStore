@@ -15,7 +15,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="104dp"
         android:layout_marginRight="104dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:text="Category"
         app:layout_constraintBottom_toTopOf="@+id/searchViewAD"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:text="Title"
         app:layout_constraintBottom_toTopOf="@+id/searchViewAD"
         app:layout_constraintEnd_toStartOf="@+id/manuButtonAD"
@@ -41,7 +41,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="12dp"
         android:layout_marginRight="12dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:text="Manufacturer"
         app:layout_constraintBottom_toTopOf="@+id/searchViewAD"
         app:layout_constraintEnd_toStartOf="@+id/categoryButtonAD"
@@ -80,27 +80,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.973" />
 
-    <Button
-        android:id="@+id/checkoutButtonAD"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="Checkout"
-        android:textColor="@color/black"
-        app:backgroundTint="@color/loginbg"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.976"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvAD"
-        android:layout_width="401dp"
-        android:layout_height="409dp"
+        android:layout_width="400dp"
+        android:layout_height="459dp"
         android:layout_margin="5dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="32dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/checkoutButtonAD"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

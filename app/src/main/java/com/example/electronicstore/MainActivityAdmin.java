@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -112,7 +115,7 @@ public class MainActivityAdmin extends AppCompatActivity {
         });
 
 
-        checkoutButton.setOnClickListener(new View.OnClickListener() {
+       /*checkoutButton.setOnClickListener(new View.OnClickListener() {
 
 
             @Override
@@ -120,7 +123,7 @@ public class MainActivityAdmin extends AppCompatActivity {
 
                 startActivity(new Intent(getApplicationContext(), ShoppingCart.class));
             }
-        });
+        });*/
 
 
 
@@ -266,7 +269,7 @@ public class MainActivityAdmin extends AppCompatActivity {
                 else if (d_checkBox.isChecked() && manu_checkBox.isChecked()) {
                     descendingManufacturing();
                 }
-                
+
                 dialog.dismiss();
             }
         });
@@ -384,6 +387,35 @@ public class MainActivityAdmin extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+
+            case R.id.item1:
+                Toast.makeText(this, "Customer Order History", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivityAdmin.this, CustomerDetails.class);
+                startActivity(intent);
+                return true;
+            case R.id.item2:
+                    Toast.makeText(this,  "Stock Database", Toast.LENGTH_SHORT).show();
+                Intent intent2 = new Intent(MainActivityAdmin.this, MainActivityAdmin.class);
+                startActivity(intent2);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
 
 
 }

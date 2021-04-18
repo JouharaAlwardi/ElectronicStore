@@ -110,7 +110,7 @@ public class SignUp extends AppCompatActivity {
                                         });
 
 
-                                        com.example.fypbarcode.UserHelperClass user = new com.example.fypbarcode.UserHelperClass(  name,  username,  email,  phoneNumber,  password);
+                                        UserHelperClass user = new UserHelperClass(  name,  username,  email,  phoneNumber,  password);
 
                                         FirebaseDatabase.getInstance().getReference("Users")
                                                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())

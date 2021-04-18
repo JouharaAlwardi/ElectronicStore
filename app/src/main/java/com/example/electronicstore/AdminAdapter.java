@@ -68,7 +68,7 @@ public class AdminAdapter extends RecyclerView.Adapter<AdminAdapter.MyViewHolder
                 String stock =  holder.stockView.getText().toString();
                 int position = i;
                 addToCart(view, title, manufacturer, categoryView, price,  stock,list.get(i).getImage(), position);
-                Toast.makeText(context, "Item Added to Cart", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Data Updated", Toast.LENGTH_SHORT).show();
             }
         });
 

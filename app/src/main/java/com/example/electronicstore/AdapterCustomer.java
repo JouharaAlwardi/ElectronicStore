@@ -22,13 +22,13 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class AdapterClass extends RecyclerView.Adapter<AdapterClass.MyViewHolder>{
+public class AdapterCustomer extends RecyclerView.Adapter<AdapterCustomer.MyViewHolder>{
 
-    ArrayList<Item> list;
+    ArrayList<UserHelperClass> list;
     Context context;
 
 
-    public AdapterClass(ArrayList<Item> list,Context context ) {
+    public AdapterCustomer(ArrayList<UserHelperClass> list,Context context ) {
 
         this.list = list;
         this.context = context;
@@ -38,7 +38,7 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.MyViewHolder
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_holder, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.customer_holder, parent, false);
         return new MyViewHolder(view);
 
     }
@@ -46,19 +46,18 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.MyViewHolder
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int i) {
 
-        holder.titleView.setText(list.get(i).getTitle());
-        holder.manuView.setText(list.get(i).getManufacturer());
-        holder.categoryView.setText(list.get(i).getCategory());
-        holder.priceView.setText(list.get(i).getPrice()+"$");
-        holder.stockView.setText("Stock: "+list.get(i).getStock());
-        Glide.with(context).load(list.get(i).getImage()).into(holder.image);
+        holder.customerName.setText(list.get(i).getName());
+        holder.customerUsername.setText(list.get(i).getUsername());
+        holder.customerEmail.setText(list.get(i).getEmail());
+        holder.customerNum.setText(list.get(i).getPhoneNo());
+
         holder.btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //int num = Integer.parseInt(list.get(i).getStock())-1;
                 //list.get(i).setStock(String.valueOf(num));
-                addToCart(view, list.get(i).getTitle(), list.get(i).getManufacturer(), list.get(i).getCategory(), list.get(i).getPrice(),  list.get(i).getStock(),list.get(i).getImage() );
-                Toast.makeText(context, "Item Added to Cart", Toast.LENGTH_SHORT).show();
+               // addToCart(view, list.get(i).getTitle(), list.get(i).getManufacturer(), list.get(i).getCategory(), list.get(i).getPrice(),  list.get(i).getStock(),list.get(i).getImage() );
+                Toast.makeText(context, "View Order History", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -71,19 +70,17 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.MyViewHolder
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder  {
-        TextView titleView, manuView, categoryView, priceView, stockView;
-        ImageView image;
+        TextView customerName, customerUsername, customerEmail, customerNum;
         Button btn;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            titleView = itemView.findViewById(R.id.customerName);
-            manuView = itemView.findViewById(R.id.customerUsername);
-            image = itemView.findViewById(R.id.imageViewaAD);
-            categoryView = itemView.findViewById(R.id.categoryView);
-            priceView = itemView.findViewById(R.id.customerEmail);
-            stockView = itemView.findViewById(R.id.stockView);
-            btn = itemView.findViewById(R.id.updateData);
+
+            customerName = itemView.findViewById(R.id.customerName);
+            customerUsername = itemView.findViewById(R.id.customerUsername);
+            customerEmail = itemView.findViewById(R.id.customerEmail);
+            customerNum = itemView.findViewById(R.id.customerNum);
+            btn = itemView.findViewById(R.id.orderHistory);
 
         }
 
@@ -124,3 +121,4 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.MyViewHolder
 
     }
 }
+
