@@ -36,7 +36,6 @@ public class Login extends AppCompatActivity implements ILoginView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        //loginController= new LoginController(this);
         mEmail = (EditText) findViewById(R.id.Admin);
         mPassword = (EditText) findViewById(R.id.passwordAdmin);
         forgetPassword = (TextView) findViewById(R.id.forgetPassword);
@@ -85,7 +84,7 @@ public class Login extends AppCompatActivity implements ILoginView {
         });
 
 
-        
+
         forgetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

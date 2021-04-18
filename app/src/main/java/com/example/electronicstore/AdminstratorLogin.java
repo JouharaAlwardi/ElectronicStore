@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.electronicstore.Controller.ILoginController;
+import com.example.electronicstore.View.ILoginView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -21,25 +23,27 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class AdminstratorLogin extends AppCompatActivity {
+public class AdminstratorLogin extends AppCompatActivity implements ILoginView {
     EditText mEmail, mPassword;
     Button login;
     FirebaseAuth fAuth;
     TextView forgetPassword;
+
+    ILoginController loginController;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adminstrator_login);
-
+        loginController = new ILoginController(this);
         mEmail = (EditText) findViewById(R.id.Admin);
         mPassword = (EditText) findViewById(R.id.passwordAdmin);
         forgetPassword = (TextView) findViewById(R.id.forgetPassword);
         fAuth = FirebaseAuth.getInstance();
 
-        /////////////////////
-     Button signupPage = (Button) findViewById(R.id.adminTitle
+
+        Button signupPage = (Button) findViewById(R.id.adminTitle
         );
         signupPage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +53,7 @@ public class AdminstratorLogin extends AppCompatActivity {
             }
         });
 
-        /////////////////////
+
         login = (Button) findViewById(R.id.loginAdmin);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,29 +62,7 @@ public class AdminstratorLogin extends AppCompatActivity {
                 String email = mEmail.getText().toString();
                 String password = mPassword.getText().toString();
 
-                if (password.length() < 6) {
-
-                    Toast.makeText(AdminstratorLogin.this, "password is less than 6 characters", Toast.LENGTH_LONG).show();
-
-
-                }  if (validatePasswrod(password) == true) {
-
-                    Toast.makeText(AdminstratorLogin.this, "Whitespace not allowed in password ", Toast.LENGTH_LONG).show();
-
-                } if (TextUtils.isEmpty(email)) {
-                    mEmail.setError("Email is Required");
-                    return;
-
-                }  if (TextUtils.isEmpty(password)) {
-                    mPassword.setError("Password is Required");
-                    return;
-
-                } else {
-
-
-                }
-
-
+                loginController.OnLoginAdmin(email.trim(), password.trim());
 
                 fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -101,7 +83,6 @@ public class AdminstratorLogin extends AppCompatActivity {
         });
 
 
-        /////////////////////
 
         forgetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,27 +130,14 @@ public class AdminstratorLogin extends AppCompatActivity {
     }
 
 
+    @Override
+    public void OnLoginSuccess(String message) {
+        Toast.makeText(AdminstratorLogin.this, message, Toast.LENGTH_SHORT).show();
+    }
 
-
-    public boolean validatePasswrod(String pas) {
-        boolean valid = true;
-
-        for (int i = 0; i < pas.length(); i++) {
-
-            char ch = pas.charAt(i);
-            if (ch == ' ') {
-
-                valid = true;
-                break;
-
-            } else {
-
-                valid = false;
-
-            }
-
-        }
-        return valid;
+    @Override
+    public void OnLoginError(String message) {
+        Toast.makeText(AdminstratorLogin.this, message, Toast.LENGTH_SHORT).show();
 
     }
 }
