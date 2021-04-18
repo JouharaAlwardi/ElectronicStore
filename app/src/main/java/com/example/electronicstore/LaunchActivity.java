@@ -24,7 +24,7 @@ public class LaunchActivity extends AppCompatActivity {
         userTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // startActivity(new Intent(getApplicationContext(), AdminstratorLogin.class));
+               startActivity(new Intent(getApplicationContext(), AdminstratorLogin.class));
             }
         });
 
