@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LaunchActivity">
+
+    <Button
+        android:id="@+id/adminstratorTitle"
+        android:layout_width="268dp"
+        android:layout_height="53dp"
+        android:layout_marginBottom="304dp"
+        android:background="@color/newgrey"
+        android:shadowColor="@android:color/transparent"
+        android:text="ADMINSTRATOR "
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        app:backgroundTint="@color/newgrey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/userTitle"
+        android:layout_width="270dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="228dp"
+        android:background="@color/newgrey"
+        android:text="USER"
+        android:textColor="@color/black"
+        app:backgroundTint="@color/newgrey"
+        app:layout_constraintBottom_toTopOf="@+id/adminstratorTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.483" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
