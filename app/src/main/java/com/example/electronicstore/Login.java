@@ -7,13 +7,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.electronicstore.Controller.ILoginController;
+import com.example.electronicstore.Controller.LoginController;
+import com.example.electronicstore.View.ILoginView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -21,22 +23,25 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class Login extends AppCompatActivity {
+public class Login extends AppCompatActivity implements ILoginView {
     EditText mEmail, mPassword;
     Button login;
     FirebaseAuth fAuth;
     TextView forgetPassword;
+
+    ILoginController loginController;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        //loginController= new LoginController(this);
         mEmail = (EditText) findViewById(R.id.Admin);
         mPassword = (EditText) findViewById(R.id.passwordAdmin);
         forgetPassword = (TextView) findViewById(R.id.forgetPassword);
         fAuth = FirebaseAuth.getInstance();
+        loginController = new ILoginController(this);
 
 
         Button signupPage = (Button) findViewById(R.id.signupPage
@@ -56,32 +61,9 @@ public class Login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 String email = mEmail.getText().toString();
                 String password = mPassword.getText().toString();
-
-                if (password.length() < 6) {
-
-                    Toast.makeText(Login.this, "password is less than 6 characters", Toast.LENGTH_LONG).show();
-
-
-                }  if (validatePasswrod(password) == true) {
-
-                    Toast.makeText(Login.this, "Whitespace not allowed in password ", Toast.LENGTH_LONG).show();
-
-                } if (TextUtils.isEmpty(email)) {
-                    mEmail.setError("Email is Required");
-                    return;
-
-                }  if (TextUtils.isEmpty(password)) {
-                    mPassword.setError("Password is Required");
-                    return;
-
-                } else {
-
-
-                }
-
+                loginController.OnLogin(email, password);
 
 
                 fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -103,8 +85,7 @@ public class Login extends AppCompatActivity {
         });
 
 
-        /////////////////////
-
+        
         forgetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -153,25 +134,19 @@ public class Login extends AppCompatActivity {
 
 
 
-    public boolean validatePasswrod(String pas) {
-        boolean valid = true;
+    @Override
+    public void OnLoginSuccess(String message) {
 
-        for (int i = 0; i < pas.length(); i++) {
+        Toast.makeText(Login.this, message, Toast.LENGTH_SHORT).show();
 
-            char ch = pas.charAt(i);
-            if (ch == ' ') {
 
-                valid = true;
-                break;
+    }
 
-            } else {
+    @Override
+    public void OnLoginError(String message) {
 
-                valid = false;
+        Toast.makeText(Login.this, message, Toast.LENGTH_SHORT).show();
 
-            }
-
-        }
-        return valid;
 
     }
 }

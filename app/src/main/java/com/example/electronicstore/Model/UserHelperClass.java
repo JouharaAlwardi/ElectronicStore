@@ -1,6 +1,8 @@
-package com.example.electronicstore;
+package com.example.electronicstore.Model;
 
-public class UserHelperClass {
+import android.text.TextUtils;
+
+public class UserHelperClass implements IUser {
 
     public String name, username, email, phoneNo, password;
 
@@ -8,6 +10,10 @@ public class UserHelperClass {
     public UserHelperClass() {
     }
 
+    public UserHelperClass(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
 
     public UserHelperClass(String name, String username, String email, String phoneNo, String password) {
         this.name = name;
@@ -22,6 +28,7 @@ public class UserHelperClass {
         return name;
     }
 
+
     public void setName(String name) {
         this.name = name;
     }
@@ -34,6 +41,7 @@ public class UserHelperClass {
         this.username = username;
     }
 
+    @Override
     public String getEmail() {
         return email;
     }
@@ -50,9 +58,63 @@ public class UserHelperClass {
         this.phoneNo = phoneNo;
     }
 
+    @Override
     public String getPassword() {
         return password;
     }
+
+    @Override
+    public int isValid() {
+        if (getPassword().length() < 6) {
+
+            return 0;
+
+        }
+        if (validatePasswrod(getPassword()) == true) {
+
+            return 1;
+
+        }
+        if (TextUtils.isEmpty(getEmail())) {
+
+            return 2;
+
+
+        }
+        if (TextUtils.isEmpty(getPassword())) {
+
+            return 3;
+
+        }
+
+        else
+            return -1;
+    }
+
+
+
+    public boolean validatePasswrod(String pas) {
+        boolean valid = true;
+
+        for (int i = 0; i < pas.length(); i++) {
+
+            char ch = pas.charAt(i);
+            if (ch == ' ') {
+
+                valid = true;
+                break;
+
+            } else {
+
+                valid = false;
+
+            }
+
+        }
+        return valid;
+
+    }
+
 
     public void setPassword(String password) {
         this.password = password;
