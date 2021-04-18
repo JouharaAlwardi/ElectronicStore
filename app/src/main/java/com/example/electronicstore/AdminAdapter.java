@@ -5,8 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,13 +22,13 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class AdapterClass extends RecyclerView.Adapter<AdapterClass.MyViewHolder>{
+public class AdminAdapter extends RecyclerView.Adapter<AdminAdapter.MyViewHolder>{
 
     ArrayList<Item> list;
     Context context;
 
 
-    public AdapterClass(ArrayList<Item> list,Context context ) {
+    public AdminAdapter(ArrayList<Item> list,Context context ) {
 
         this.list = list;
         this.context = context;
@@ -38,7 +38,7 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.MyViewHolder
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_holder, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.admin_product_holder, parent, false);
         return new MyViewHolder(view);
 
     }
@@ -46,18 +46,28 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.MyViewHolder
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int i) {
 
+
+
+
+
         holder.titleView.setText(list.get(i).getTitle());
         holder.manuView.setText(list.get(i).getManufacturer());
         holder.categoryView.setText(list.get(i).getCategory());
-        holder.priceView.setText(list.get(i).getPrice()+"$");
-        holder.stockView.setText("Stock: "+list.get(i).getStock());
+        holder.priceView.setText(list.get(i).getPrice());
+        holder.stockView.setText(list.get(i).getStock());
+
         Glide.with(context).load(list.get(i).getImage()).into(holder.image);
         holder.btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //int num = Integer.parseInt(list.get(i).getStock())-1;
-                //list.get(i).setStock(String.valueOf(num));
-                addToCart(view, list.get(i).getTitle(), list.get(i).getManufacturer(), list.get(i).getCategory(), list.get(i).getPrice(),  list.get(i).getStock(),list.get(i).getImage() );
+
+                String title = holder.titleView.getText().toString();
+                String manufacturer =  holder.manuView.getText().toString();
+                String categoryView =  holder.manuView.getText().toString();
+                String price =  holder.priceView.getText().toString();
+                String stock =  holder.stockView.getText().toString();
+                int position = i;
+                addToCart(view, title, manufacturer, categoryView, price,  stock,list.get(i).getImage(), position);
                 Toast.makeText(context, "Item Added to Cart", Toast.LENGTH_SHORT).show();
             }
         });
@@ -71,46 +81,51 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.MyViewHolder
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder  {
-        TextView titleView, manuView, categoryView, priceView, stockView;
+        EditText titleView, manuView, categoryView, priceView, stockView;
         ImageView image;
         Button btn;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            titleView = itemView.findViewById(R.id.titleViewCart);
-            manuView = itemView.findViewById(R.id.manuViewCart);
+            titleView = itemView.findViewById(R.id.titleET);
+            manuView = itemView.findViewById(R.id.manuET);
             image = itemView.findViewById(R.id.imageViewaAD);
-            categoryView = itemView.findViewById(R.id.categoryView);
-            priceView = itemView.findViewById(R.id.priceViewCart);
-            stockView = itemView.findViewById(R.id.stockView);
+            categoryView = itemView.findViewById(R.id.categoryET);
+            priceView = itemView.findViewById(R.id.priceET);
+            stockView = itemView.findViewById(R.id.stockET);
             btn = itemView.findViewById(R.id.updateData);
 
         }
 
     }
 
-    public void addToCart(View view, String title, String manufacturer, String category, String price, String stock, String image) {
+    public void addToCart(View view, String name, String manufacturer, String category, String price, String stock, String image, int position) {
 
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        int min = 50;
-        int max = 100;
-        int random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
+
 
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference uidRef = rootRef.child("Cart").child(uid);
+        DatabaseReference uidRef = rootRef.child("Items");
 
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                DatabaseReference uidRef = dataSnapshot.child("Item" + String.valueOf(random_int)).getRef();
-                uidRef.child("title").setValue(title);
-                uidRef.child("manufacturer").setValue(manufacturer);
-                uidRef.child("category").setValue(category);
-                uidRef.child("price").setValue(price);
-                uidRef.child("image").setValue(image);
-                uidRef.child("stock").setValue(stock);
 
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                        String key = ds.getKey();
+                        String title = dataSnapshot.child(key).child("title").getValue(String.class);
+                        if (name.equalsIgnoreCase(title)) {
+                        DatabaseReference uidRef = dataSnapshot.getRef();
+                        uidRef.child(key).child("title").setValue(name);
+                        uidRef.child(key).child("manufacturer").setValue(manufacturer);
+                        uidRef.child(key).child("category").setValue(category);
+                        uidRef.child(key).child("price").setValue(price);
+                        uidRef.child(key).child("image").setValue(image);
+                        uidRef.child(key).child("stock").setValue(stock);
+                        break;
+                    }
+                }
             }
 
             @Override
@@ -124,3 +139,4 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.MyViewHolder
 
     }
 }
+

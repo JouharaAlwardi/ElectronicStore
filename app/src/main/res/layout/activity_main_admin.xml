@@ -4,6 +4,105 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivityAdmin">
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+
+    <CheckBox
+        android:id="@+id/categoryButtonAD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="104dp"
+        android:layout_marginRight="104dp"
+        android:layout_marginBottom="20dp"
+        android:text="Category"
+        app:layout_constraintBottom_toTopOf="@+id/searchViewAD"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <CheckBox
+        android:id="@+id/titleButtonAD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="20dp"
+        android:text="Title"
+        app:layout_constraintBottom_toTopOf="@+id/searchViewAD"
+        app:layout_constraintEnd_toStartOf="@+id/manuButtonAD"
+        app:layout_constraintHorizontal_bias="0.588"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <CheckBox
+        android:id="@+id/manuButtonAD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="20dp"
+        android:text="Manufacturer"
+        app:layout_constraintBottom_toTopOf="@+id/searchViewAD"
+        app:layout_constraintEnd_toStartOf="@+id/categoryButtonAD"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <SearchView
+        android:id="@+id/searchViewAD"
+        android:layout_width="302dp"
+        android:layout_height="57dp"
+        android:layout_margin="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="36dp"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/rvAD"
+        app:layout_constraintEnd_toStartOf="@+id/s_buttonAD"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:queryHint="search">
+
+    </SearchView>
+
+    <Button
+        android:id="@+id/s_buttonAD"
+        android:layout_width="80dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="Sort"
+        android:textColor="@color/black"
+        app:backgroundTint="@color/loginbg"
+        app:layout_constraintBottom_toTopOf="@+id/rvAD"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.973" />
+
+    <Button
+        android:id="@+id/checkoutButtonAD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Checkout"
+        android:textColor="@color/black"
+        app:backgroundTint="@color/loginbg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.976"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvAD"
+        android:layout_width="401dp"
+        android:layout_height="409dp"
+        android:layout_margin="5dp"
+        android:layout_marginBottom="4dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@+id/checkoutButtonAD"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,11 +1,9 @@
 package com.example.electronicstore;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,9 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 
 public class ShoppingCartAdapter  extends RecyclerView.Adapter<ShoppingCartAdapter.MyViewHolder> {
 
@@ -78,7 +73,7 @@ public class ShoppingCartAdapter  extends RecyclerView.Adapter<ShoppingCartAdapt
             super(itemView);
             titleView = itemView.findViewById(R.id.titleViewCart);
             manuView = itemView.findViewById(R.id.manuViewCart);
-            image = itemView.findViewById(R.id.imageViewCart);
+            image = itemView.findViewById(R.id.imageViewaAD);
             priceView = itemView.findViewById(R.id.priceViewCart);
 
 

@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +14,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.SearchView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,8 +24,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -52,18 +48,18 @@ public class MainActivity extends AppCompatActivity {
 
         fAuth = FirebaseAuth.getInstance();
         ref = FirebaseDatabase.getInstance().getReference().child("Items");
-        recyclerView = findViewById(R.id.rv);
-        searchView = findViewById(R.id.searchView);
+        recyclerView = findViewById(R.id.rvAD);
+        searchView = findViewById(R.id.searchViewAD);
 
 
         //Checkout Button
-        checkoutButton = findViewById(R.id.checkoutButton);
+        checkoutButton = findViewById(R.id.checkoutButtonAD);
 
 
         //checkboxes
-        titleButton = findViewById(R.id.titleButton);
-        manuButton = findViewById(R.id.manuButton);
-        categoryButton = findViewById(R.id.categoryButton);
+        titleButton = findViewById(R.id.titleButtonAD);
+        manuButton = findViewById(R.id.manuButtonAD);
+        categoryButton = findViewById(R.id.categoryButtonAD);
 
         //override checkboxes
 
@@ -105,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapterClass);
 
 
-        Button dialogButton = (Button) findViewById(R.id.s_button);
+        Button dialogButton = (Button) findViewById(R.id.s_buttonAD);
         dialogButton.setOnClickListener(new View.OnClickListener() {
 
 

@@ -15,7 +15,7 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/imageViewCart"
+            android:id="@+id/imageViewaAD"
             android:layout_width="105dp"
             android:layout_height="match_parent"
             android:baselineAlignBottom="true"

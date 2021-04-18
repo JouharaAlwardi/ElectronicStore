@@ -88,7 +88,7 @@ public class AdminstratorLogin extends AppCompatActivity {
                         if(task.isSuccessful()) {
 
                             Toast.makeText(AdminstratorLogin.this, "Logged in Successfully ", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            Intent intent = new Intent(AdminstratorLogin.this, MainActivityAdmin.class);
                             startActivity(intent);
 
 

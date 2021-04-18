@@ -4,14 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -25,8 +22,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-
-import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 
 public class ShoppingCart extends AppCompatActivity {
     DatabaseReference ref;
@@ -51,8 +46,8 @@ public class ShoppingCart extends AppCompatActivity {
 
         fAuth = FirebaseAuth.getInstance();
         ref = FirebaseDatabase.getInstance().getReference().child("Cart").child(fAuth.getCurrentUser().getUid());
-        recyclerView = findViewById(R.id.rv);
-        searchView = findViewById(R.id.searchView);
+        recyclerView = findViewById(R.id.rvAD);
+        searchView = findViewById(R.id.searchViewAD);
 
         // Display total value
         totalValue = findViewById(R.id.totalValue);
