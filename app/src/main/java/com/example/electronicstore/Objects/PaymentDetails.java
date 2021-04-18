@@ -1,4 +1,4 @@
-package com.example.electronicstore;
+package com.example.electronicstore.Objects;
 
 public class PaymentDetails {
     String cardHolder, cardNumber, expirayDate, cvv;
