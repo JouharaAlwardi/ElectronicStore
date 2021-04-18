@@ -44,7 +44,7 @@ public class AdminstratorLogin extends AppCompatActivity {
         signupPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(new Intent(getApplicationContext(), AdminstratorSignUp.class));
+                startActivity(new Intent(getApplicationContext(), AdminstratorSignUp.class));
 
             }
         });
